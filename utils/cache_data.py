@@ -86,10 +86,13 @@ class CacheData:
 
             else:
                 logger.warning("\nFile({}) has a suffix that is not allowed! We will remove it!".format(file))
+        
         labels = list(set(labels))
+        labels2 = sorted(labels)
         if not self.conf['Model']['Word']:
             labels.insert(0, " ")
         logger.info("\nCoolect labels is {}".format(json.dumps(labels, ensure_ascii=False)))
+        print("Sorted labels(lenth:{}):{}".format(len(labels2),labels2))
         self.conf['System']['Path'] = base_path
         self.conf['Model']['CharSet'] = labels
         self.config.make_config(config_dict=self.conf, single=self.conf['Model']['Word'])
